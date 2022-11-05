@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+<head>
+    <title>Scrambled</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+    <form action="submit" method="post">
+        <h1><%= scrambled %></h1><br>
+        <input type="text" name="userInput">
+        <input type="hidden" name="correctWord" value="<%= cWord %>">
+        <input type="hidden" name="scrambledWord" value="<%= scrambled %>">
+        <button class="btn" type="submit">Try</button>
+    </form>
+    
+</div>
+</body>
+</html>
