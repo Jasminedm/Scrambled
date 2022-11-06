@@ -60,9 +60,9 @@ Array.from(heart).forEach(function(element) {
 
 Array.from(trash).forEach(function(element) {
       element.addEventListener('click', function(){
-        const sWord = this.parentNode.parentNode.children[0].innerText
-        const cWord = this.parentNode.parentNode.children[1].innerText
-        const iWord = this.parentNode.parentNode.children[2].innerText
+        const sWord = this.parentNode.parentNode.children[1].innerText
+        const cWord = this.parentNode.parentNode.children[3].innerText
+        const iWord = this.parentNode.parentNode.children[5].innerText
         fetch('messages', {
           method: 'delete',
           headers: {
