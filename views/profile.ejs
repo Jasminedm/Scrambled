@@ -41,12 +41,19 @@
           <h3>Your Words</h3>
           <ul class="messages">
           <% for(var i=0; i<results.length; i++) {%>
-            <li class="message">
+            <li class="message" data-objectId="<%= results[i]._id %>">
               <span>Scrambled: <%= results[i].sWord %> |</span>
               <!-- completed word -->
               <span>Unscrambled: <%= results[i].cWord %> |</span>
               <!-- Input word -->
               <span>Your Guess: <%= results[i].iWord %></span>
+
+              <% if(results[i].heart === true) { %>
+                <span><i class="fa fa-heart heart-red" data-heart="true" aria-hidden="true"></i></span>
+              <% } else { %>
+                  <span><i class="fa fa-heart heart-black" data-heart="false" aria-hidden="true"></i></span>
+              <% } %>
+
               <% if(results[i].cWord == results[i].iWord){ %>
               <span><i class="fa fa-thumbs-up" aria-hidden="true"></i></span>
               <% }else{ %>

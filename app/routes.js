@@ -1,5 +1,7 @@
 module.exports = function(app, passport, db) {
-
+  const ObjectId = require("mongodb").ObjectID;
+  
+   
 // normal routes ===============================================================
 
     // show the home page (will also have our login links)
@@ -55,19 +57,38 @@ module.exports = function(app, passport, db) {
 // message board routes ===============================================================
 
     app.post('/submit', (req, res) => {
-      db.collection('WinsAndLosses').save({user: req.user.local.email, iWord: req.body.userInput, cWord: req.body.correctWord, sWord: req.body.scrambledWord}, (err, result) => {
+      db.collection('WinsAndLosses').save({user: req.user.local.email, iWord: req.body.userInput, cWord: req.body.correctWord, sWord: req.body.scrambledWord, heart: false}, (err, result) => {
         if (err) return console.log(err)
         console.log('saved to database')
         res.redirect('/profile')
       })
     })
 
-    
+    app.put("/messages", (req, res) => {
+      console.log(ObjectId(req.body.id))
+      db.collection("WinsAndLosses").findOneAndUpdate(
+        { _id: ObjectId(req.body.id)},
+        {
+          $set: {
+            heart: !req.body.heart,
+          },
+        },
+        {
+          sort: { _id: -1 },
+          upsert: true,
+        },
+        (err, result) => {
+          if (err) return res.send(err);
+          //Sending the response
+          res.send(result);
+        }
+      );
+    });
 
     // app.put('/messages', (req, res) => {
     //   console.log(req.body)
-    //   db.collection('messages')
-    //   .findOneAndUpdate({name: req.body.name, msg: req.body.msg}, {
+    //   db.collection('WinsAndLosses')
+    //   .findOneAndUpdate({user: req.user.local.email, ThumbUp: req.body.thumbUp}, {
     //     $set: {
     //       thumbUp:req.body.thumbUp + 1
     //     }
@@ -96,7 +117,7 @@ module.exports = function(app, passport, db) {
     // })
 
     app.delete('/messages', (req, res) => {
-      db.collection('WinsAndLosses').findOneAndDelete({iWord: req.body.userInput, cWord: req.body.correctWord, sWord: req.body.scrambledWord}, (err, result) => {
+      db.collection('WinsAndLosses').findOneAndDelete({user: req.user.local.email, ThumbUp: req.body.thumbUp}, (err, result) => {
         if (err) return res.send(500, err)
         res.send('Message deleted!')
       })
