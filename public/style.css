@@ -7,8 +7,23 @@ body{
   background-attachment: fixed;
   background-size: cover;
 }
+.proSect{
+  margin-right: 10%;
+}
+.jumbotron{
+  background-color: rgba(240, 227, 227, 0.5);
+}
 img{
   height: 200px;
+}
+li{
+  list-style-type: none;
+}
+.formContainer{
+  text-align: center;
+}
+.scramW{
+  color: rgb(88, 175, 201);
 }
 .heart-red{
   color: red;

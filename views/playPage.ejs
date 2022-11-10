@@ -7,9 +7,9 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div class="container">
+<div class="container formContainer">
     <form action="submit" method="post">
-        <h1><%= scrambled %></h1><br>
+        <h1>Can you unscramble <span class="scramW"><u><%= scrambled %></u></span> ?</h1><br>
         <input type="text" name="userInput">
         <input type="hidden" name="correctWord" value="<%= cWord %>">
         <input type="hidden" name="scrambledWord" value="<%= scrambled %>">

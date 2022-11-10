@@ -85,37 +85,7 @@ module.exports = function(app, passport, db) {
       );
     });
 
-    // app.put('/messages', (req, res) => {
-    //   console.log(req.body)
-    //   db.collection('WinsAndLosses')
-    //   .findOneAndUpdate({user: req.user.local.email, ThumbUp: req.body.thumbUp}, {
-    //     $set: {
-    //       thumbUp:req.body.thumbUp + 1
-    //     }
-    //   }, {
-    //     sort: {_id: -1},
-    //     upsert: true
-    //   }, (err, result) => {
-    //     if (err) return res.send(err)
-    //     res.send(result)
-    //   })
-    // })
-
-    // app.put('/thumbdown', (req, res) => {
-    //   db.collection('messages')
-    //   .findOneAndUpdate({name: req.body.name, msg: req.body.msg}, {
-    //     $set: {
-    //       thumbDown:req.body.thumbDown + 1
-    //     }
-    //   }, {
-    //     sort: {_id: -1},
-    //     upsert: true
-    //   }, (err, result) => {
-    //     if (err) return res.send(err)
-    //     res.send(result)
-    //   })
-    // })
-
+    
     app.delete('/messages', (req, res) => {
       db.collection('WinsAndLosses').findOneAndDelete({user: req.user.local.email}, (err, result) => {
         if (err) return res.send(500, err)
